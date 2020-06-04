@@ -1,7 +1,14 @@
+import 'package:ddd_architecture/domain/auth/email_address.dart';
 import 'package:flutter/material.dart';
+
+import 'domain/auth/password.dart';
 
 void main() {
   runApp(MyApp());
+
+  var emailAddress = EmailAddress("test");
+  print(emailAddress.value);
+  print(Password("123"));
 }
 
 class MyApp extends StatelessWidget {
