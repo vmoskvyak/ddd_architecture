@@ -10,6 +10,8 @@ abstract class ValueObject<T> {
   
   const ValueObject();
 
+  bool isValid() => value.isRight();
+
   bool operator ==(Object o) {
     if (identical(this, o)) return true;
 
