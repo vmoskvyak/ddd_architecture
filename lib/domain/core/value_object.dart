@@ -2,15 +2,24 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 
+import 'error/unexpected_value_error.dart';
 import 'failure/value_failure.dart';
 
 @immutable
 abstract class ValueObject<T> {
-  Either<ValueFailure<T>, String> get value;
+  Either<ValueFailure<T>, T> get value;
   
   const ValueObject();
 
   bool isValid() => value.isRight();
+
+  T getOrCrash() {
+    return value.fold(
+      (l) => throw UnexpectedValueError(l),
+      // id identity - same at writing (ringht) => ringht
+      id,
+    );
+  }
 
   bool operator ==(Object o) {
     if (identical(this, o)) return true;
