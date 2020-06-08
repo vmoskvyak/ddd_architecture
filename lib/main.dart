@@ -1,9 +1,12 @@
 import 'package:ddd_architecture/domain/auth/email_address.dart';
+import 'package:ddd_architecture/injection.dart';
 import 'package:flutter/material.dart';
+import 'package:injectable/injectable.dart';
 
 import 'domain/auth/password.dart';
 
 void main() {
+  configureInjection(Environment.prod);
   runApp(MyApp());
 
   var emailAddress = EmailAddress("test");
