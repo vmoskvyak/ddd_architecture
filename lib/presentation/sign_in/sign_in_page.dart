@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../injection.dart';
 
-
 class SignInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

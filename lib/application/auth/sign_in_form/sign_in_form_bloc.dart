@@ -2,10 +2,10 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
-import 'package:ddd_architecture/domain/auth/email_address.dart';
 import 'package:ddd_architecture/domain/auth/failure/auth_failure.dart';
 import 'package:ddd_architecture/domain/auth/i_auth_facade.dart';
-import 'package:ddd_architecture/domain/auth/password.dart';
+import 'package:ddd_architecture/domain/auth/value_objects/email_address.dart';
+import 'package:ddd_architecture/domain/auth/value_objects/password.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -43,8 +43,9 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
         );
       },
       registerWithEmailAndPasswordPressed: (e) async* {
+        var registerWithEmailAndPassword = _authFacade.registerWithEmailAndPassword;
         yield* _performActionOnAuthFacadeWithEmailAndPassword(
-          _authFacade.registerWithEmailAndPassword,
+          registerWithEmailAndPassword,
         );
       },
       signInWithEmailAndPasswordPressed: (e) async* {
