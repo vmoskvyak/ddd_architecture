@@ -1,4 +1,5 @@
 import 'package:ddd_architecture/application/auth/sign_in_form/sign_in_form_bloc.dart';
+import 'package:ddd_architecture/domain/core/failure/auth_value_failure.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,7 +18,8 @@ class SignInForm extends StatelessWidget {
                   cancelledByUser: (_) => "Canceled",
                   serverError: (_) => "Server Error",
                   emailAlreadyInUse: (_) => "Email already in use",
-                  invalidEmailAndPasswordCombination: (_) => "invalid email and password combination",
+                  invalidEmailAndPasswordCombination: (_) =>
+                      "invalid email and password combination",
                 ),
               ).show(context)
             },
@@ -29,6 +31,7 @@ class SignInForm extends StatelessWidget {
         return Form(
           autovalidate: state.showErrorMessages,
           child: ListView(
+            padding: EdgeInsets.all(8),
             children: <Widget>[
               const Text(
                 '📝',
@@ -50,7 +53,14 @@ class SignInForm extends StatelessWidget {
                     .value
                     .fold(
                       (l) => l.maybeMap(
-                        invalidEmail: (_) => "Invalid email",
+                        auth: (f) {
+                          //return f.authValueFailure.map(invalidEmail: (message) => message.failedValue, shortPassword: (_) => null,);
+                          //if (f.authValueFailure is InvalidEmail) return "Invalid Email"; else return null;
+                          return f.authValueFailure.maybeMap(
+                            invalidEmail: (value) => value.failedValue,
+                            orElse: () => null,
+                          );
+                        },
                         orElse: () => null,
                       ),
                       (r) => null,
@@ -68,7 +78,12 @@ class SignInForm extends StatelessWidget {
                 validator: (_) =>
                     context.bloc<SignInFormBloc>().state.password.value.fold(
                           (l) => l.maybeMap(
-                            shortPassword: (_) => "short password",
+                            auth: (f) {
+                              return f.authValueFailure.maybeMap(
+                                shortPassword: (_) => "Srort Password",
+                                orElse: () => null,
+                              );
+                            },
                             orElse: () => null,
                           ),
                           (r) => null,
@@ -113,7 +128,11 @@ class SignInForm extends StatelessWidget {
                   style: TextStyle(
                       color: Colors.white, fontWeight: FontWeight.bold),
                 ),
-              )
+              ),
+              if (state.isSubmitting) ...[
+                const SizedBox(height: 8),
+                const LinearProgressIndicator(value: null)
+              ]
             ],
           ),
         );
