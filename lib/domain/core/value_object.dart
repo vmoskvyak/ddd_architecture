@@ -1,4 +1,3 @@
-
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 
@@ -8,10 +7,17 @@ import 'failure/value_failure.dart';
 @immutable
 abstract class ValueObject<T> {
   Either<ValueFailure<T>, T> get value;
-  
+
   const ValueObject();
 
   bool isValid() => value.isRight();
+
+  Either<ValueFailure<dynamic>, Unit> get failureOrUnit {
+    return value.fold(
+      (l) => left(l),
+      (r) => right(unit),
+    );
+  }
 
   T getOrCrash() {
     return value.fold(
