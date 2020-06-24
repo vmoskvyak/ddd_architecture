@@ -1,4 +1,4 @@
-reimport 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ddd_architecture/domain/notes/failure/note_failure.dart';
 import 'package:ddd_architecture/domain/notes/entities/note.dart';
 import 'package:dartz/dartz.dart';
