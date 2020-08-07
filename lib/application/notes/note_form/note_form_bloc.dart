@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:html';
 import 'dart:ui';
 
 import 'package:bloc/bloc.dart';
@@ -10,7 +9,6 @@ import 'package:ddd_architecture/domain/notes/repository/i_note_repository.dart'
 import 'package:ddd_architecture/domain/notes/value_objects/list_three.dart';
 import 'package:ddd_architecture/domain/notes/value_objects/note_body.dart';
 import 'package:ddd_architecture/domain/notes/value_objects/note_color.dart';
-import 'package:ddd_architecture/infrastructure/notes/note_dtos.dart';
 import 'package:ddd_architecture/presentation/notes/note_form/misc/todo_item_presentation_classes.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
