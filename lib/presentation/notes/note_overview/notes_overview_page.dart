@@ -4,6 +4,7 @@ import 'package:ddd_architecture/application/notes/note_actor/note_actor_bloc.da
 import 'package:ddd_architecture/application/notes/note_watcher/note_watcher_bloc.dart';
 import 'package:ddd_architecture/injection.dart';
 import 'package:ddd_architecture/presentation/notes/note_overview/widgets/notes_overview_body_widget.dart';
+import 'package:ddd_architecture/presentation/notes/note_overview/widgets/uncompleated_switch.dart';
 import 'package:ddd_architecture/presentation/routes/router.gr.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
@@ -66,12 +67,7 @@ class NotesOverviewPage extends StatelessWidget {
                     .add(const AuthEvent.signedOut());
               },
             ),
-            actions: <Widget>[
-              IconButton(
-                icon: Icon(Icons.indeterminate_check_box),
-                onPressed: () {},
-              )
-            ],
+            actions: <Widget>[UncompletedSwitch()],
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: () {},
