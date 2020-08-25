@@ -12,11 +12,11 @@ class SplashPage extends StatelessWidget {
         state.when(
           initial: () {},
           authenticated: () {
-            ExtendedNavigator.of(context).popAndPush(Routes.notesOverviewPage);
+            ExtendedNavigator.of(context).replace(Routes.notesOverviewPage);
             print("autenticated");
           },
           unauthenticated: () {
-            ExtendedNavigator.of(context).popAndPush(Routes.signInPage);
+            ExtendedNavigator.of(context).replace(Routes.signInPage);
           },
         );
       },

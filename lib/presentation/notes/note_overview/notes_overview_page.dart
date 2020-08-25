@@ -32,7 +32,7 @@ class NotesOverviewPage extends StatelessWidget {
             listener: (context, state) {
               state.maybeMap(
                 unauthenticated: (_) =>
-                    ExtendedNavigator.of(context).popAndPush(Routes.signInPage),
+                    ExtendedNavigator.of(context).replace(Routes.signInPage),
                 orElse: () {},
               );
             },
@@ -70,7 +70,9 @@ class NotesOverviewPage extends StatelessWidget {
             actions: <Widget>[UncompletedSwitch()],
           ),
           floatingActionButton: FloatingActionButton(
-            onPressed: () {},
+            onPressed: () {
+              ExtendedNavigator.of(context).pushNoteFormPage(editedNote: null);
+            },
             child: Icon(Icons.add),
           ),
           body: NotesOverviewBodyWidget(),
